@@ -39,3 +39,10 @@ class Ingredient(models.Model):
         related_name="Ingredients",
         on_delete=models.PROTECT,  # or models.PROTECT
     )
+
+    amount = models.FloatField
+    recipe = models.ForeignKey(
+        "Recipe", related_name="ingredients", on_delete=models.CASCADE
+    )
+    measurement = models.ForeignKey("Measure", on_delete=models.PROTECT)
+    food = models.ForeignKey("FoodItem", on_delete=models.PROTECT)
