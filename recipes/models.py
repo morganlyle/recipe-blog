@@ -13,4 +13,4 @@ class Recipe(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def _str(self):
-        return self.name
+        return self.name + " by " + self.author
