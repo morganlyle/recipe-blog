@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Recipe - Scrumptious</title>
     <link rel="stylesheet" href="{% static 'css/app.css' %}" />
+    <background
   </head>
 
   <body>
@@ -32,6 +33,11 @@
       {% endif %}
       <h1>{{ recipe.name }}</h1>
       <p>{{ recipe.description | markdownify }}</p>
+      <p>Created on {{ recipe.created }} | Updated on {{ recipe.updated }}</p>
+      <form method="post" action="{% url 'recipe_rating' recipe.id %}">
+        {% csrf_token %} {{ rating_form.as_p }}
+        <button class="button">Rate</button>
+      </form>
       <p>Tags: {% for tag in recipe.tags.all %}{{ tag.word }} {% endfor %}</p>
       <p>{{ recipe.description | markdownify }}</p>
       <h2>Ingredients</h2>
