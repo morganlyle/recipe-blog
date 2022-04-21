@@ -63,5 +63,17 @@ class Step(models.Model):
 
     directions = models.CharField(max_length=300)
 
+    food_items = models.ManyToManyField("FoodItem", null=True, blank=True)
+
+    def _str_(self):
+        return self.name
+
+
+class Tag(models.Model):
+
+    name = models.CharField(max_length=20)
+
+    recipes = models.ManyToManyField("recipes.Recipe", related_name="tags")
+
     def _str_(self):
         return self.name
