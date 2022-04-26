@@ -29,23 +29,18 @@ class TagDetailView(DetailView):
     model = Tag
     template_name = "tags/detail.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["rating_form"] = RatingForm()
-        return context
-
 
 class TagCreateView(CreateView):
     model = Tag
     template_name = "tags/new.html"
-    fields = ["name", "author", "description", "image"]
+    fields = ["name"]
     success_url = reverse_lazy("tags_list")
 
 
 class TagUpdateView(UpdateView):
     model = Tag
     template_name = "tags/edit.html"
-    fields = ["name", "author", "description", "image"]
+    fields = ["name"]
     success_url = reverse_lazy("tags_list")
 
 
