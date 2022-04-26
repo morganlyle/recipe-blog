@@ -6,10 +6,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tags - Scrumptious</title>
+    <title>New Recipe - Scrumptious</title>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}" />
   </head>
 
-  
   <body>
     <header>
       <nav>
@@ -26,17 +26,13 @@
         </ul>
       </nav>
     </header>
-    <main class="recipe-grid">
-      {% for recipe in recipe_list %}
-      <div class="recipe-card">
-        <h2 class="recipe-card-title">
-          <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
-        </h2>
-        <p class="recipe-card-date">{{ recipe.updated }}</p>
-      </div>
-      {% endfor %}
+    <main class="recipe-form">
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <div class="control">
+          <button class="button">Create</button>
+        </div>
+      </form>
     </main>
   </body>
-</html>
-
 </html>
