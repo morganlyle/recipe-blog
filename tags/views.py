@@ -5,10 +5,11 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from recipes.forms import RatingForm
 
-try:
-    from tags.models import Tag
-except Exception:
-    Tag = None
+# try:
+from tags.models import Tag
+
+# except Exception:
+#     Tag = None
 
 
 # Create your views here.

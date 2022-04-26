@@ -1,20 +1,21 @@
 from django import forms
 from recipes.models import Rating
 
-try:
-    from recipes.models import Recipe
+# try:
+from recipes.models import Recipe
 
-    class RecipeForm(forms.ModelForm):
-        class Meta:
-            model = Recipe
-            fields = [
-                "name",
-                "author",
-                "description",
-                "image",
-            ]
 
-except Exception:
+class RecipeForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = [
+            "name",
+            "author",
+            "description",
+            "image",
+        ]
+
+    # except Exception:
     pass
 
 
