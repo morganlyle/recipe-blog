@@ -149,3 +149,6 @@ MARKDOWNIFY = {
         ]
     }
 }
+
+LOGIN_URL = "recipes.list"
+LOGOUT_URL = "recipes.list"

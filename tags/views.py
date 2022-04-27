@@ -3,7 +3,9 @@ from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
-from recipes.forms import RatingForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+# from recipes.forms import RatingForm
 
 # try:
 from tags.models import Tag
@@ -23,7 +25,7 @@ def show_tags(request):
 class TagListView(ListView):
     model = Tag
     template_name = "tags/list.html"
-    paginate_by = 10
+    paginate_by = 2
 
 
 class TagDetailView(DetailView):
@@ -31,21 +33,21 @@ class TagDetailView(DetailView):
     template_name = "tags/detail.html"
 
 
-class TagCreateView(CreateView):
+class TagCreateView(LoginRequiredMixin, CreateView):
     model = Tag
     template_name = "tags/new.html"
     fields = ["name"]
     success_url = reverse_lazy("tags_list")
 
 
-class TagUpdateView(UpdateView):
+class TagUpdateView(LoginRequiredMixin, UpdateView):
     model = Tag
     template_name = "tags/edit.html"
     fields = ["name"]
     success_url = reverse_lazy("tags_list")
 
 
-class TagDeleteView(DeleteView):
+class TagDeleteView(LoginRequiredMixin, DeleteView):
     model = Tag
     template_name = "tags/delete.html"
     success_url = reverse_lazy("tags_list")
