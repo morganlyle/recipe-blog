@@ -13,7 +13,7 @@
       <img src="{{ recipe.image }}" class="pull-right" />
       {% endif %}
       <h1>{{ recipe.name }}</h1>
-      <h2> {{ recipe.author | defult_if_none: "Unknown" }}</h2>
+      <h2>by: {{ recipe.author | default_if_none:"Unknown" }}</h2>
       <p>{{ recipe.description | markdownify }}</p>
       <p>Created on {{ recipe.created }} | Updated on {{ recipe.updated }}</p>
       <form method="post" action="{% url 'recipe_rating' recipe.id %}">
@@ -32,10 +32,21 @@
         </thead>
         <tbody>
           {% for ingredient in recipe.ingredients.all %}
-          <tr>
+          <>
             <td>{{ ingredient.amount }}</td>
             <td>{{ ingredient.measure.name }}</td>
             <td>{{ ingredient.food.name }}</td>
+
+            <td>
+              <form method="POST" action="{% url 'shopping_item_create' %}">
+                {% csrf_token %}
+                <input type="hidden" name="ingredient_id" value="{{ ingredient.id }}">
+                <button>+ shopping list</button>
+              </form>
+            </td>
+           
+        
+          
           </tr>
           {% endfor %}
         </tbody>

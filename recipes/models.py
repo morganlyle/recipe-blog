@@ -13,7 +13,7 @@ class Recipe(models.Model):
     # author = models.CharField(max_length=100)
     description = models.TextField()
     image = models.URLField(null=True, blank=True)
-    created = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(
         USER_MODEL,
@@ -83,3 +83,13 @@ class Rating(models.Model):
         related_name="ratings",
         on_delete=models.CASCADE,
     )
+
+
+class ShoppingItem(models.Model):
+    user = models.ForeignKey(
+        USER_MODEL,
+        related_name="shoppingItem",
+        on_delete=models.CASCADE,
+        null=True,
+    )
+    food = models.ForeignKey("FoodItem", on_delete=models.PROTECT)

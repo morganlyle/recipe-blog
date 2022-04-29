@@ -4,29 +4,29 @@ from meal_plan.views import (
     MealPlanListView,
     MealPlanCreateView,
     MealPlanDetailView,
-    MealPlanEditView,
+    MealPlanUpdateView,
     MealPlanDeleteView,
 )
 
 urlpatterns = [
     path("", MealPlanListView.as_view(), name="meal_plan_list"),
     path(
-        "meal_plans/create/",
-        MealPlanCreateView.as_view(),
-        name="meal_plan_create",
-    ),
-    path(
-        "meal_plans/<int:pk>/",
+        "<int:pk>/",
         MealPlanDetailView.as_view(),
         name="meal_plan_detail",
     ),
     path(
-        "meal_plans/<int:pk>/edit/",
-        MealPlanEditView.as_view(),
+        "new/",
+        MealPlanCreateView.as_view(),
+        name="meal_plan_new",
+    ),
+    path(
+        "<int:pk>/edit/",
+        MealPlanUpdateView.as_view(),
         name="meal_plan_edit",
     ),
     path(
-        "meal_plans/<int:pk>/delete/",
+        "<int:pk>/delete/",
         MealPlanDeleteView.as_view(),
         name="meal_plan_delete",
     ),

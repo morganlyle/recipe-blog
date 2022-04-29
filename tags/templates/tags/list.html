@@ -21,7 +21,7 @@
   {% for tag in tag_list %}
   <div class="recipe-card">
     <h2 class="recipe-card-title">
-      <a href="{% url 'tag_detail' tag.id %}">{{ tag.name }}</a>
+      <a href="{% url 'tags_detail' tag.id %}">{{ tag.name }}</a>
     </h2>
     {% for recipe in tag.recipes.all %}
     <p>

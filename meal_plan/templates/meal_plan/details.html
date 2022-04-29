@@ -1,19 +1,19 @@
-{%extends "base.html"%} 
-
-
+{%extends "base.html" %}
 
 <!DOCTYPE html>
-{% load markdownify %}
+{% load markdownify %} 
+
 {%block content%}
     <main class="recipe-detail">
       <div>
-        <a href="{% url 'tags_edit' tags.id %}">Edit</a>
-        <a href="{% url 'tags_delete' tags.id %}">Delete</a>
+        <a href="{% url 'recipe_edit' recipe.id %}">Edit</a>
+        <a href="{% url 'recipe_delete' recipe.id %}">Delete</a>
       </div>
       {% if recipe.image %}
-      <img src="{{ tags.image }}" class="pull-right" />
+      <img src="{{ recipe.image }}" class="pull-right" />
       {% endif %}
       <h1>{{ recipe.name }}</h1>
+      <h2>by: {{ recipe.author | default_if_none:"Unknown" }}</h2>
       <p>{{ recipe.description | markdownify }}</p>
       <p>Created on {{ recipe.created }} | Updated on {{ recipe.updated }}</p>
       <form method="post" action="{% url 'recipe_rating' recipe.id %}">
@@ -47,5 +47,5 @@
         {% endfor %}
       </ol>
     </main>
-  {% endblock content %}
+  {%endblock content %}
 </html>

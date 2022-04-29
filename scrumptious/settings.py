@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "markdownify.apps.MarkdownifyConfig",
-    "meal_plan.apps.AppConfig",
+    "meal_plan.apps.MealPlanConfig",
 ]
 
 MIDDLEWARE = [
