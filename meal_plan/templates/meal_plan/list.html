@@ -1,44 +1,24 @@
 {% extends 'base.html' %}
 
 <!DOCTYPE html>
-      {%block pagination%}
-      <div class="pagination">
-        <span class="step-links">
-          {% if page_obj.has_previous %}
-          <a href="?page=1">&laquo; first</a>
-          <Fa href="?page={{ page_obj.previous_page_number }}">previous</Fa>
-          {% endif %}
-
-          <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-          </span>
-
-          {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}">next</a>
-          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-          {% endif %}
-        </span>
-      </div>
-      {% endblock pagination %}
-    
+       
       {%block content%}
-      <li>
-        <a href="{% url 'meal_plan/list.html' %}">Create a Meal Plan</a>
-      </li>
+      
     <main class="recipe-grid">
-      {% for mealplan in meal_plan.recipes.all %}
-      <div class="meal-plan-card">
-        <h2 class="meal-plan-card-title">
-          <a href="{% url 'meal_plan_detail' meals.pk %}">{{ recipe.name }}</a>
-        </h2>
-        <p class="meal-plan-date">{{ recipe.name }}</p>
-      </div>
-      {% for mealplan in meal_plan.recipes.all%}
+      {% for mealplan in meal_plan
+        meal_plan/list.html %}
       <div class="recipe-card">
-        
-        <p class="recipe-card-date">{{ meals.name }}</p>
+        <h2 class="recipe-card-title">
+          <a href="{% url 'meal_plan_detail' meals.pk %}">{{ meals.name }}</a>
+        </h2>
       </div>
+     
       {% endfor %}
+      <div class="mealplan">
+        <div class= "control">
+        <a href="{% url 'meal_plan/new.html' %}"><button>Create</button></a>
+      </div>
+    </div>
     </main>
     {% endblock content%}
 </html>

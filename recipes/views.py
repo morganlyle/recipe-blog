@@ -42,6 +42,7 @@ class RecipeListView(ListView):
 class RecipeDetailView(DetailView):
     model = Recipe
     template_name = "recipes/detail.html"
+    related_name = "shoppingitems"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -49,11 +50,11 @@ class RecipeDetailView(DetailView):
 
         foods = []
 
-        for item in self.request.user.shopping_items.all():
+        for item in self.request.user.recipes.all():
 
-            foods.append(item.food_item)
+            foods.append(item.shoppingitems)
 
-        context["food_in_shopping_list"] = foods
+            context["food_in_shopping_list"] = foods
 
         return context
 
@@ -85,6 +86,7 @@ class RecipeDeleteView(LoginRequiredMixin, DeleteView):
 class ShoppingItemsListView(LoginRequiredMixin, ListView):
     model = ShoppingItem
     template_name = "shopping_items/list.html"
+    related_name = "shoppingitems"
     success_url = reverse_lazy("shopping_item_list")
 
     def get_queryset(self):
