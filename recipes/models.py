@@ -10,7 +10,7 @@ USER_MODEL = settings.AUTH_USER_MODEL
 # Create your models here.
 class Recipe(models.Model):
     name = models.CharField(max_length=125)
-    # author = models.CharField(max_length=100)
+    servings = models.BigIntegerField(null=True, blank=True)
     description = models.TextField()
     image = models.URLField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)

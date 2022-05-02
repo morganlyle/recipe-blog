@@ -24,7 +24,7 @@
 
     <ul>
       {%for item in shopping_items_list %}
-      <li>{{item.shopping_items_list}}</li>
+      <li>{{item.food_item}}</li>
       {% endfor %}
     <form method="Post" action="{% url 'delete_all_shopping_items' %}">
       {%csrf_token%}

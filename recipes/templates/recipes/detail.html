@@ -16,6 +16,17 @@
       <h2>by: {{ recipe.author | default_if_none:"Unknown" }}</h2>
       <p>{{ recipe.description | markdownify }}</p>
       <p>Created on {{ recipe.created }} | Updated on {{ recipe.updated }}</p>
+
+      {%if recipe.servings%}
+      <p>Serves{{ recipe.servings}} </p>
+      <form method = "GET">
+        <input type="number", name="servings", Required></input>
+        <button class="button">Resize!</button>
+      </form>
+       {% endif %}
+
+
+
       <form method="post" action="{% url 'recipe_rating' recipe.id %}">
         {% csrf_token %} {{ rating_form.as_p }}
         <button class="button">Rate</button>
